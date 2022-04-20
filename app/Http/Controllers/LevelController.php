@@ -17,7 +17,7 @@ class LevelController extends Controller
     {
         $levels = Level::paginate(20);
 
-        return $levels;
+        return new LevelResource($levels);
     }
 
     /**
