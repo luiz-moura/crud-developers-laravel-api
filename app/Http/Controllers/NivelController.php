@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\LevelResource;
-use App\Models\Level;
+use App\Http\Resources\NivelResource;
+use App\Models\Nivel;
 use Illuminate\Http\Request;
 
-class LevelController extends Controller
+class NivelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class LevelController extends Controller
      */
     public function index()
     {
-        $levels = Level::paginate(20);
+        $nivels = Nivel::paginate(20);
 
-        return new LevelResource($levels);
+        return new NivelResource($nivels);
     }
 
     /**
@@ -28,45 +28,45 @@ class LevelController extends Controller
      */
     public function store(Request $request)
     {
-        $level = Level::create($request->only(['name', 'description']));
+        $nivel = Nivel::create($request->only('nome'));
 
-        return new LevelResource($level);
+        return new NivelResource($nivel);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Level  $level
+     * @param  \App\Models\Nivel  $nivel
      * @return \Illuminate\Http\Response
      */
-    public function show(Level $level)
+    public function show(Nivel $nivel)
     {
-        return new LevelResource($level);
+        return new NivelResource($nivel);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Level  $level
+     * @param  \App\Models\Nivel  $nivel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Level $level)
+    public function update(Request $request, Nivel $nivel)
     {
-        $level->update($request->only(['name', 'description']));
+        $nivel->update($request->only('nome'));
 
-        return new LevelResource($level);
+        return new NivelResource($nivel);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Level  $level
+     * @param  \App\Models\Nivel  $nivel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Level $level)
+    public function destroy(Nivel $nivel)
     {
-        $level->delete();
+        $nivel->delete();
 
         return response()->json(null, 204);
     }
