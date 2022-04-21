@@ -13,9 +13,15 @@ class DesenvolvedorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $desenvolvedores = Desenvolvedor::paginate(20);
+        $query = Desenvolvedor::query();
+
+        if ($request->filled('nome')) {
+            $query->whereRaw("unaccent(nome) ilike ?", "%{$request->query('nome')}%");
+        }
+
+        $desenvolvedores = $query->paginate(20);
 
         return new DesenvolvedorResource($desenvolvedores);
     }

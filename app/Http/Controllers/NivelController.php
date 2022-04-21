@@ -13,11 +13,17 @@ class NivelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $nivels = Nivel::paginate(20);
+        $query = Nivel::query();
 
-        return new NivelResource($nivels);
+        if ($request->filled('nivel')) {
+            $query->whereRaw("unaccent(nome) ilike ?", "%{$request->query('nivel')}%");
+        }
+
+        $niveis = $query->paginate(20);
+
+        return new NivelResource($niveis);
     }
 
     /**
