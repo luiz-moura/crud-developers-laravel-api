@@ -13,4 +13,14 @@ class Nivel extends Model
     protected $table = 'niveis';
 
     protected $fillable = ['id', 'nome'];
+
+    /**
+     * Get all of the desenvolvedores for the Nivel
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function desenvolvedores(): HasMany
+    {
+        return $this->hasMany(Desenvolvedor::class, 'nivel_id', 'id');
+    }
 }
