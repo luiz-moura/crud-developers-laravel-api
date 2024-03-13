@@ -20,7 +20,7 @@ Tecnologia utilizada no desenvolvimento do projeto:
 
 1. Clone the project
 ```bash
-  git clone https://github.com/luiz-moura/developers-laravel-api
+  git clone https://github.com/luiz-moura/crud-developers-laravel-api.git
 ```
 
 2. Create .env
